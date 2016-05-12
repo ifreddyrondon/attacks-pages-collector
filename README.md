@@ -17,3 +17,4 @@ The data retrieve from the pages are shown in the following format:
 
 The sources are the URL where the information is collected and standardize it with the structure of the data format.
 
+- http://autoshun.org/files/shunlist.csv
