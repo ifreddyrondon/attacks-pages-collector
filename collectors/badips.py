@@ -46,30 +46,32 @@ def get_who_is_and_country(ip):
 
 
 def gather():
-    base_url = "http://autoshun.org/files/shunlist.csv"
-    res = get_url(base_url)
+    base_url = "https://www.badips.com/"
+    categories_list_url = "get/categories"
+    ip_by_category_list_url = "get/list"
 
-    for line in res.iter_lines():
-        line = line.split(",")
+    # get the category of the attack
+    res = get_url("{}{}".format(base_url, categories_list_url))
+    for category in res.json()["categories"]:
+        attack_type = category["Name"]
+        # get the ips for the category
+        url = base_url + "{}/{}/".format(ip_by_category_list_url, attack_type)
+        res = get_url(url)
+        for ip_address in res.iter_lines():
+            host = get_host(ip_address)
+            who_is, country = get_who_is_and_country(ip_address)
 
-        if len(line) != 3:
-            continue
+            doc = {
+                'IP': ip_address,
+                'SourceInfo': url,
+                'Type': attack_type,
+                'Country': country,
+                'Domain': host,
+                'URL': " ",
+                'WhoIsInfo': who_is,
+            }
 
-        ip_address, attack_type = line[0], line[2]
-        host = get_host(ip_address)
-        who_is, country = get_who_is_and_country(ip_address)
-
-        doc = {
-            'IP': ip_address,
-            'SourceInfo': base_url,
-            'Type': attack_type,
-            'Country': country,
-            'Domain': host,
-            'URL': " ",
-            'WhoIsInfo': who_is,
-        }
-
-        pprint(doc)
+            pprint(doc)
 
 if __name__ == '__main__':
     gather()
