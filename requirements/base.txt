@@ -1,0 +1,4 @@
+dnspython==1.13.0
+ipaddr==2.1.11
+ipwhois==0.13.0
+requests==2.10.0
