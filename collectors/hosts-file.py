@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import socket
-from time import gmtime, strftime
 import requests
 import ipwhois
 from pprint import pprint
@@ -80,7 +79,6 @@ def gather():
                 'IP': ip_address,
                 'SourceInfo': url,
                 'Type': attack_type,
-                'DateTime': strftime("%Y-%m-%d", gmtime()),
                 'Country': country,
                 'Domain': site_url,
                 'URL': site_url,
