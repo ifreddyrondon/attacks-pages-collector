@@ -19,3 +19,5 @@ The sources are the URL where the information is collected and standardize it wi
 
 - http://autoshun.org/files/shunlist.csv
 - https://www.badips.com/
+- http://lists.blocklist.de/
+- http://cybercrime-tracker.net
